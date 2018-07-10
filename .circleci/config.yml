@@ -1,0 +1,38 @@
+version: 2
+jobs:
+  build:
+    branches:
+      ignore:
+        - gh-pages
+    docker:
+      - image: circleci/node:7.10.1
+      
+    working_directory: ~/sample-node-app/
+    environment:
+      - SOURCE_BRANCH: master
+      - TARGET_BRANCH: gh-pages
+    steps:
+      - checkout
+      - run: npm -v
+      - run: node -v
+      - run: npm config set registry https://registry.npmjs.org/
+      - run: npm install
+      - run: npm run build
+      - run:
+          name: Deploy as GitHub Pages
+          command: |
+              if [ $CIRCLE_BRANCH == $SOURCE_BRANCH ]; then
+                git config --global user.email abhimanyu.gupta@infosys.com
+                git config --global user.name "abhimanyu"
+                echo "$CIRCLE_REPOSITORY_URL"
+                git clone $CIRCLE_REPOSITORY_URL out
+                cd out
+                git checkout $TARGET_BRANCH || git checkout --orphan $TARGET_BRANCH
+                cd ..
+                cp -a dist/. out/.
+                mkdir -p out/.circleci && cp -a .circleci/. out/.circleci/.
+                cd out
+                git add -A
+                git commit -m "Automated deployment to GitHub Pages: ${CIRCLE_SHA1}" --allow-empty
+                git push origin $TARGET_BRANCH
+              fi
