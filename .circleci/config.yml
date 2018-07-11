@@ -5,7 +5,7 @@ jobs:
       ignore:
         - gh-pages
     docker:
-      - image: circleci/node:7.10.1
+      - image: circleci/node:8.11.3
       
     working_directory: ~/sample-node-app/
     environment:
