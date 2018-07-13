@@ -15,8 +15,6 @@ jobs:
       - checkout
       - run: npm -v
       - run: node -v
-      - run: npm install lighthouse
-      - run: lighthouse --help
       - run: npm config set registry https://registry.npmjs.org/
       - run: npm install
       - run: npm run build
