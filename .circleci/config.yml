@@ -42,10 +42,6 @@ workflows:
   scheduled-workflow:
     triggers:
       - schedule:
-          cron: "5 13 * * *"
-          filters:
-            branches:
-              only: feature1
-
+          cron: "5 13 * * *"          
     jobs:
       - build
