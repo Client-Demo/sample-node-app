@@ -2,9 +2,6 @@ version: 2.0
 
 jobs:
   build:
-    branches:
-      ignore:
-        - gh-pages
     docker:
       - image: circleci/node:8.11.3
       
@@ -43,14 +40,11 @@ workflows:
   version: 2
   commit-workflow:
     jobs:
-      - build 
+      - build
+        
   scheduled-workflow:
     triggers:
       - schedule:
-          cron: "0 5 * * *"
-          filters:
-            branches:
-              only: feature1
-
+          cron: "0 7 * * *"
     jobs:
       - build
