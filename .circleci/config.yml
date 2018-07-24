@@ -40,14 +40,15 @@ workflows:
   version: 2
   commit-workflow:
     jobs:
-      - build 
+      - build
+        
   scheduled-workflow:
     triggers:
       - schedule:
-          cron: "0 5 * * *"
+          cron: "0 7 * * *"
           filters:
             branches:
-              only: feature1
-
+              only:
+                - master
     jobs:
       - build
