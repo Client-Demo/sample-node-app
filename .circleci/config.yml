@@ -37,11 +37,3 @@ jobs:
                 git commit -m "Automated deployment to GitHub Pages: ${CIRCLE_SHA1}" --allow-empty
                 git push origin $TARGET_BRANCH
               fi
-workflows:
-  version: 2
-  scheduled-workflow:
-    triggers:
-      - schedule:
-          cron: "5 13 * * *"          
-    jobs:
-      - build
