@@ -45,15 +45,18 @@ workflows:
             branches:
               ignore:
                 - gh-pages
+                - master
+                - feature1
         
   scheduled-workflow:
     triggers:
       - schedule:
-          cron: "20 7 * * *"
+          cron: "0 10 * * *"
           filters:
             branches:
               only:
                 - master
+                - feature1
               ignore:
                 - gh-pages
     jobs:
