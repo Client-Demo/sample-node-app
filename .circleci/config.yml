@@ -1,9 +1,7 @@
-version: 2
+version: 2.0
+
 jobs:
   build:
-    branches:
-      ignore:
-        - gh-pages
     docker:
       - image: circleci/node:8.11.3
       
@@ -37,3 +35,19 @@ jobs:
                 git commit -m "Automated deployment to GitHub Pages: ${CIRCLE_SHA1}" --allow-empty
                 git push origin $TARGET_BRANCH
               fi
+
+workflows:
+  version: 2
+  commit-workflow:
+    jobs:
+      - build 
+  scheduled-workflow:
+    triggers:
+      - schedule:
+          cron: "0 5 * * *"
+          filters:
+            branches:
+              only: feature1
+
+    jobs:
+      - build
