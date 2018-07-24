@@ -56,7 +56,6 @@ workflows:
             branches:
               only:
                 - master
-                - feature1
               ignore:
                 - gh-pages
     jobs:
