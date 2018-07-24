@@ -2,6 +2,9 @@ version: 2.0
 
 jobs:
   build:
+    branches:
+      ignore:
+        - gh-pages
     docker:
       - image: circleci/node:8.11.3
       
