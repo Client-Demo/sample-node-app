@@ -51,11 +51,12 @@ workflows:
   scheduled-workflow:
     triggers:
       - schedule:
-          cron: "20 7 * * *"
+          cron: "0 9 * * *"
           filters:
             branches:
               only:
                 - master
+                - feature1
               ignore:
                 - gh-pages
     jobs:
