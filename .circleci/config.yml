@@ -45,6 +45,8 @@ workflows:
             branches:
               ignore:
                 - gh-pages
+                - master
+                - feature1
         
   scheduled-workflow:
     triggers:
