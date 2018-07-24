@@ -40,7 +40,11 @@ workflows:
   version: 2
   commit-workflow:
     jobs:
-      - build
+      - build:
+          filters:     
+            branches:
+              ignore:
+                - gh-pages
         
   scheduled-workflow:
     triggers:
@@ -50,5 +54,7 @@ workflows:
             branches:
               only:
                 - master
+              ignore:
+                - gh-pages
     jobs:
       - build
